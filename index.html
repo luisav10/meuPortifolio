@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog da Luisa Vera ~*</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mint: {
+                            DEFAULT: '#b2edd8',
+                            light: '#e1f9f0',
+                            dark: '#6ec3a6',
+                        },
+                        cutePink: {
+                            50: '#fff0f6',
+                            100: '#ffe3ec',
+                            200: '#ffc6d9',
+                            300: '#ffa6c1',
+                            400: '#ff759f',
+                            500: '#ff4d8d',
+                        },
+                        darkCute: '#1d1221',
+                        darkCard: '#2a1a30',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;600;700&display=swap');
+
+        body {
+            transition: background-color 0.4s ease, color 0.4s ease;
+            font-family: 'Fredoka', 'Comic Neue', sans-serif;
+            background-color: #fff0f6;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSApbZyS1dKQIBN_4n9pGZjTFHNfgXYjRqim3rb0dvnEq9keuIqLTRt_jQ&s=10');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .dark body {
+            background-color: transparent;
+            background-image: linear-gradient(rgba(29, 18, 33, 0.65), rgba(29, 18, 33, 0.65)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSApbZyS1dKQIBN_4n9pGZjTFHNfgXYjRqim3rb0dvnEq9keuIqLTRt_jQ&s=10');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Moldura estilo Blog dos anos 2000 (Renda/Lace) */
+        .frufru-border {
+            border: 4px dashed #ffa6c1;
+            outline: 6px solid #b2edd8;
+            outline-offset: 4px;
+        }
+
+        .dark .frufru-border {
+            border: 4px dashed #ff4d8d;
+            outline: 6px solid #482a52;
+            outline-offset: 4px;
+        }
+
+        .frufru-shadow {
+            box-shadow: 0 12px 0px #ffc6d9, 0 20px 25px rgba(255, 117, 159, 0.3);
+        }
+
+        .dark .frufru-shadow {
+            box-shadow: 0 12px 0px #3c2047, 0 20px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Animação de Brilho / Coração Flutuante sem emoji */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) scale(1.2) rotate(15deg); }
+            100% { transform: translateY(-45px) scale(1.5) rotate(-10deg); opacity: 0; }
+        }
+
+        .floating-heart {
+            position: absolute;
+            animation: floatUp 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            pointer-events: none;
+            color: #ff4d8d;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        /* Caixa com laço superior estilo diário */
+        .y2k-ribbon {
+            background: linear-gradient(135deg, #ffa6c1, #ff759f);
+            color: white;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 relative transition-colors duration-300">
+
+    <!-- Overlay de textura suave estilo anos 2000 -->
+    <div class="fixed inset-0 bg-white/20 dark:bg-black/20 backdrop-blur-[1px] pointer-events-none"></div>
+
+    <!-- MAIN CARD: BLOG DIÁRIO ANOS 2000 (EM 2 COLUNAS) -->
+    <main class="relative z-10 w-full max-w-4xl bg-white/90 dark:bg-darkCard/85 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-8 frufru-border frufru-shadow transition-all duration-300 my-4">
+        
+        <!-- HEADER DO BLOG: MODO ESCURO E LOGO RETRÔ -->
+        <div class="flex justify-between items-center mb-6 border-b-2 border-dotted border-cutePink-200 dark:border-slate-700 pb-3">
+            <span class="y2k-ribbon font-bold px-3.5 py-1 rounded-full flex items-center gap-1 shadow-sm text-xs">
+                cantinho da luisa 𑣲𝄞
+            </span>
+            <button id="btn-theme" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cutePink-100 dark:bg-slate-800 text-cutePink-500 dark:text-mint hover:bg-cutePink-200 dark:hover:bg-slate-700 transition text-xs font-bold cursor-pointer border border-cutePink-300 dark:border-slate-600">
+                <i id="theme-icon" data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span id="theme-text">Modo Escuro</span>
+            </button>
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL DIVIDIDO EM 2 COLUNAS (LADO A LADO) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+            <!-- COLUNA ESQUERDA: APRESENTAÇÃO E INTERAÇÕES DO DOM -->
+            <div class="space-y-5">
+                <!-- SEÇÃO PERFIL / AVATAR FOFO -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="relative group">
+                        <!-- Borda em camada frufru -->
+                        <div class="absolute -inset-2 bg-gradient-to-r from-cutePink-300 via-mint to-cutePink-400 rounded-full blur-xs opacity-90 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
+                        <img 
+                            src="https://i.pinimg.com/736x/1d/01/3e/1d013ef29bbe70db8edb2306c3423bae.jpg" 
+                            alt="Foto de Luisa Vera" 
+                            class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white dark:border-darkCard shadow-md"
+                        >
+                        <div class="absolute -bottom-1 -right-1 bg-white dark:bg-slate-800 p-1.5 rounded-full border-2 border-cutePink-300 shadow-sm">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-cutePink-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Nome e Bio estilo Weblog -->
+                    <div>
+                        <div class="inline-flex items-center gap-1 px-3.5 py-1 bg-mint/40 dark:bg-mint/20 border border-mint text-slate-800 dark:text-mint-light rounded-full text-xs font-bold mb-2 tracking-wide">
+                            <span>web developer & designer</span>
+                        </div>
+                        <h1 class="text-4xl font-extrabold tracking-tight text-slate-800 dark:text-cutePink-100 flex items-center justify-center gap-2">
+                            Luisa Vera <span class="text-xl font-normal text-cutePink-400">ᨳ𐔌՞҂ ˕ ֊՞𐦯ᜊ</span>
+                        </h1>
+                        <p class="text-slate-700 dark:text-slate-200 text-base mt-3 max-w-xs mx-auto leading-relaxed font-semibold bg-cutePink-50/80 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-cutePink-200 dark:border-slate-700">
+                            criando paginhas fofas, cheias de charme e interatividade com a magia do JavaScript! 𑣲𝄞
+                        </p>
+                    </div>
+                </div>
+
+                <!-- INTERAÇÕES DO DOM (CONTADOR E RECADINHO) -->
+                <div class="space-y-3.5 pt-2">
+                    <!-- 01. CONTADOR DE CURTIDAS -->
+                    <div class="flex items-center gap-2 relative">
+                        <button id="btn-curtir" class="relative flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-cutePink-400 to-cutePink-500 hover:from-cutePink-500 hover:to-cutePink-600 text-white font-bold py-3.5 px-4 rounded-2xl shadow-md active:scale-95 transition cursor-pointer border-b-4 border-cutePink-600 text-sm">
+                            <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                            <span>curtir portifolio</span>
+                        </button>
+                        <div class="px-3.5 py-3 bg-cutePink-50 dark:bg-slate-800/90 border-2 border-mint rounded-2xl text-center min-w-[120px] shadow-xs">
+                            <span id="contador" class="font-extrabold text-sm text-cutePink-500 dark:text-mint">0 curtidas</span>
+                        </div>
+                    </div>
+
+                    <!-- 02. CURIOSIDADE OCULTA / SEGREDO -->
+                    <div class="w-full">
+                        <button id="btn-curiosidade" class="w-full flex items-center justify-center gap-2 bg-mint-light dark:bg-slate-800/90 hover:bg-mint/50 dark:hover:bg-slate-700 text-slate-800 dark:text-mint font-bold py-3.5 px-4 rounded-2xl transition cursor-pointer border-2 border-mint shadow-xs text-sm">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-mint-dark"></i>
+                            <span id="texto-btn-curiosidade">Curiosidade</span>
+                        </button>
+
+                        <!-- Caixa Oculta de Curiosidade -->
+                        <div id="caixa-curiosidade" style="display: none;" class="mt-3 p-4 bg-white/90 dark:bg-slate-900/90 rounded-2xl border-2 border-dotted border-cutePink-400 text-slate-700 dark:text-cutePink-100 text-sm leading-relaxed shadow-inner">
+                            <div class="flex items-start gap-2.5">
+                                <i data-lucide="feather" class="w-5 h-5 text-cutePink-400 shrink-0 mt-0.5"></i>
+                                <p class="text-xs sm:text-sm leading-relaxed">
+                                    <strong class="text-cutePink-500 dark:text-cutePink-300">Meu Cantinho Animal:</strong> No meu cantinho de estudos sempre tenho a melhor companhia! Tenho um calopsita superfofo e tagarela chamado <strong>Pipico</strong>, que ama cantar enquanto eu programo. E guardo com muito carinho no meu coração as lembranças do meu eterno hamster <strong>Catatau</strong>! Eles são meus companheirinhos mais especiais!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA: FICHA PESSOAL, QUALIDADES E INFORMAÇÕES -->
+            <div class="space-y-4 h-full flex flex-col justify-between">
+                <!-- BLOCO DE INFORMAÇÕES PESSOAIS -->
+                <div class="bg-cutePink-50/80 dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border-2 border-dashed border-cutePink-300 dark:border-slate-700 text-sm space-y-4">
+                    
+                    <div class="flex items-center justify-between border-b border-cutePink-200 dark:border-slate-800 pb-2.5">
+                        <span class="font-bold text-cutePink-500 dark:text-cutePink-300 text-base flex items-center gap-1.5">
+                            <i data-lucide="user-check" class="w-5 h-5"></i>
+                            Ficha Pessoal
+                        </span>
+                        <span class="text-xs text-slate-400 font-semibold flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-mint-dark inline-block animate-ping"></span>
+                            status: online
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 text-slate-700 dark:text-slate-300">
+                        <div class="bg-white/90 dark:bg-darkCard/90 p-3.5 rounded-xl border border-cutePink-200 dark:border-slate-700 flex items-center gap-2.5">
+                            <i data-lucide="cake" class="w-5 h-5 text-cutePink-400 shrink-0"></i>
+                            <div>
+                                <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Idade</span>
+                                <span class="font-bold text-sm text-slate-800 dark:text-slate-200">17 anos</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/90 dark:bg-darkCard/90 p-3.5 rounded-xl border border-cutePink-200 dark:border-slate-700 flex items-center gap-2.5">
+                            <i data-lucide="phone" class="w-5 h-5 text-mint-dark shrink-0"></i>
+                            <div>
+                                <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Contato</span>
+                                <span class="font-bold text-sm text-slate-800 dark:text-slate-200">(15) 99779-8084</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qualidades FruFru em formato de texto corrido -->
+                    <div class="bg-white/90 dark:bg-darkCard/90 p-4 rounded-xl border border-cutePink-200 dark:border-slate-700 space-y-1">
+                        <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                            <i data-lucide="star" class="w-4 h-4 text-cutePink-400"></i>
+                            Qualidades & Habilidades
+                        </span>
+                        <p class="text-slate-700 dark:text-slate-200 text-xs sm:text-sm leading-relaxed font-medium">
+                            Sou uma pessoa muito criativa, dedicada e extremamente detalhista no que faço. Tenho paixão pelo desenvolvimento front-end e adoro criar designs fofos e pixel art com muita dedicação!
+                        </p>
+                    </div>
+
+                    <!-- Dica / Frase fofa adicional -->
+                    <div class="bg-mint-light/60 dark:bg-slate-800/60 p-3.5 rounded-xl border border-mint dark:border-slate-700 flex items-center gap-2.5 text-slate-700 dark:text-slate-200 text-xs sm:text-sm">
+                        <i data-lucide="heart-handshake" class="w-5 h-5 text-mint-dark shrink-0"></i>
+                        <span>Sempre buscando aprender mais e deixar a web um lugar mais gracioso!</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RODAPÉ ESTILO BLOGGER ANOS 2000 -->
+        <footer class="mt-6 pt-4 border-t-2 border-dotted border-cutePink-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+            <span>Feito com carinho por Luisa Vera (>᎑<๑)/♡ ~ 2026</span>
+            <img src="https://img1.picmix.com/output/stamp/normal/5/9/0/4/2624095_e0bc5.gif" alt="Gif Anos 2000 Fofo" class="h-20 sm:h-24 object-contain mt-1">
+        </footer>
+    </main>
+
+    <!-- SCRIPT JAVASCRIPT - MANIPULAÇÃO DO DOM -->
+    <script>
+        /* ======================================================
+           1. SELEÇÃO DE ELEMENTOS DO DOM (getElementById)
+           ====================================================== */
+        // Dark Mode
+        const btnTheme = document.getElementById("btn-theme");
+        const themeText = document.getElementById("theme-text");
+        const themeIcon = document.getElementById("theme-icon");
+
+        // Contador de Curtidas
+        const btnCurtir = document.getElementById("btn-curtir");
+        const contador = document.getElementById("contador");
+
+        // Curiosidade Oculta
+        const btnCuriosidade = document.getElementById("btn-curiosidade");
+        const caixaCuriosidade = document.getElementById("caixa-curiosidade");
+        const textoBtnCuriosidade = document.getElementById("texto-btn-curiosidade");
+
+        /* ======================================================
+           2. ESCUTAR EVENTOS (addEventListener) 
+           3. ALTERAR PROPRIEDADES / CLASSES / TEXTO
+           ====================================================== */
+
+        // MODO ESCURO
+        btnTheme.addEventListener("click", function () {
+            const modoEscuroAtivo = document.documentElement.classList.toggle("dark");
+
+            if (modoEscuroAtivo) {
+                themeText.textContent = "Modo Claro";
+                themeIcon.setAttribute("data-lucide", "sun");
+            } else {
+                themeText.textContent = "Modo Escuro";
+                themeIcon.setAttribute("data-lucide", "moon");
+            }
+
+            lucide.createIcons();
+        });
+
+        // CONTADOR DE CURTIDAS COM ANIMAÇÃO FOFA (SEM EMOJI)
+        let curtidas = 0;
+
+        btnCurtir.addEventListener("click", function (e) {
+            curtidas++;
+            if (curtidas === 1) {
+                contador.textContent = "1 curtida";
+            } else {
+                contador.textContent = `${curtidas} curtidas`;
+            }
+
+            // Animação de símbolo de carinho flutuante sem usar emojis
+            const spark = document.createElement("span");
+            spark.classList.add("floating-heart");
+            spark.textContent = "♡";
+            
+            const rect = btnCurtir.getBoundingClientRect();
+            spark.style.left = `${e.clientX - rect.left}px`;
+            spark.style.top = `${e.clientY - rect.top}px`;
+
+            btnCurtir.appendChild(spark);
+
+            setTimeout(() => {
+                spark.remove();
+            }, 900);
+        });
+
+        // REVELAR SEGREDO
+        btnCuriosidade.addEventListener("click", function () {
+            if (caixaCuriosidade.style.display === "none" || caixaCuriosidade.style.display === "") {
+                caixaCuriosidade.style.display = "block";
+                textoBtnCuriosidade.textContent = "Esconder Curiosidade";
+            } else {
+                caixaCuriosidade.style.display = "none";
+                textoBtnCuriosidade.textContent = "Curiosidade";
+            }
+        });
+
+        // Inicializar os ícones vetorizados do Lucide
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
